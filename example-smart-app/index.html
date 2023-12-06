@@ -11,7 +11,7 @@
       <link rel='stylesheet' type='text/css' href='./lib/css/cerner-smart-embeddable-lib-1.0.0.min.css'>
     -->
   </head>
-  <body>
+  <body>  
     <div id='errors'>
     </div>
     <div id="loading" class="spinner">
@@ -102,6 +102,22 @@
           $('#errors').html('<p> Failed to call FHIR Service </p>');
         }
       );
+      $(document).ready(function() {
+        // 监听表单提交事件
+        $('#updateForm').on('submit', function(event) {
+            event.preventDefault(); // 阻止表单默认提交行为
+
+            // 获取用户输入
+            var updatedFname = $('#updatedFname').val();
+            var updatedLname = $('#updatedLname').val();
+
+            // 把submit按钮变成黑色
+            $('#submitButton').css('background-color', 'black');
+
+            // 构建需要更新的患者信息对象
+            // ... 您的代码 ...
+        });
+      });
     </script>
   </body>
 </html>
