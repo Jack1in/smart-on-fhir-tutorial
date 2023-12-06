@@ -2,7 +2,7 @@
   window.extractData = function() {
     var ret = $.Deferred();
     
-    var p = defaultPatient();
+    
 
     function onError() {
       console.log('Loading error', arguments);
@@ -44,6 +44,7 @@
           var hdl = byCodes('2085-9');
           var ldl = byCodes('2089-1');
 
+          var p = defaultPatient();
           p.birthdate = patient.birthDate;
           p.gender = gender;
           p.fname = fname;
@@ -72,27 +73,6 @@
     return ret.promise();
 
   };
-
-  $(document).ready(function() {
-    // 监听表单提交事件
-    $('#updateForm').on('submit', function(event) {
-        event.preventDefault(); // 阻止表单默认提交行为
-
-        // 获取用户输入
-        var updatedFname = $('#updatedFname').val();
-        var updatedLname = $('#updatedLname').val();
-
-        // 构建需要更新的患者信息对象
-        p.name = [{
-          use: "official",
-          family: [updatedLname],
-          given: [updatedFname]
-        }];
-
-        // 发送更新请求到FHIR服务器
-        updatePatientData(p);
-    });
-  });
 
   function updatePatientData(patientData) {
     // 假设 `smart` 是全局可用的SMART on FHIR对象
